@@ -2,12 +2,15 @@ FROM node:16-buster-slim as build
 
 WORKDIR /usr/src/app
 
-COPY ./nosgestesclimat ./nosgestesclimat
+ADD ./nosgestesclimat ./nosgestesclimat
 COPY ./nosgestesclimat-site ./nosgestesclimat-site
 WORKDIR /usr/src/app/nosgestesclimat-site
 
 RUN yarn
 RUN yarn compile
+# RUN yarn stats
+
+# RUN yarn clean
 
 FROM nginx:alpine as prod
 
